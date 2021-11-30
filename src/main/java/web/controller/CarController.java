@@ -17,18 +17,17 @@ import java.util.Optional;
 public class CarController {
 
 	@GetMapping(value = "/cars")
-//	public String printCar(ModelMap model){
-	public String printCar(@RequestParam(defaultValue = "5") String count, ModelMap model) {
-		int countIN = Integer.valueOf(count);
-//		if(countIN == 0){
-//			countIN = 5;
-//		}
-		countIN = (countIN == 5 ) ? 5 : countIN;
+
+	public String printCar(@RequestParam(defaultValue = "5") int count, ModelMap model) {
+		if (count < 0){
+			count = 0;
+		} else if(count > 5){
+			count = 5;
+		}
 
 		CarService tableCar = new CarServiseImpl();
-		List<Car> myTable = tableCar.tableCar(countIN);
+		List<Car> myTable = tableCar.tableCar(count);
 		model.addAttribute("rows", myTable);
-
 
 		return "/cars";
 	}

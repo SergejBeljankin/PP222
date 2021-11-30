@@ -1,10 +1,7 @@
 package web.service;
 
-import web.model.Car;
-
-import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CarService {
-    ArrayList tableCar(int count);
+    List tableCar(int count);
 }
